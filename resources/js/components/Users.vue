@@ -145,6 +145,8 @@
                 this.$Progress.start();
                 this.form.post('api/user');
 
+                Fire.$emit('AfterCreate');
+
                 $('#addNewModal').modal('hide');
 
                 toast.fire({
@@ -160,7 +162,10 @@
 
             this.loadUsers();
             // After Every 3 seconds loadUsers() function will triggered
-            setInterval(() => this.loadUsers(), 3000);
+            // setInterval(() => this.loadUsers(), 3000);
+            Fire.$on('AfterCreate', () => {
+                this.loadUsers();
+            });
         }
     }
 </script>
