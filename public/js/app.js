@@ -1999,6 +1999,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37456,12 +37535,27 @@ var staticRenderFns = [
             _c("div", { staticClass: "card-header" }, [
               _c("h3", { staticClass: "card-title" }, [_vm._v("Users List")]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-tools" })
+              _c("div", { staticClass: "card-tools" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      "data-toggle": "modal",
+                      "data-target": "#addNewModal"
+                    }
+                  },
+                  [
+                    _vm._v("\n                            Add New "),
+                    _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  ]
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "box-body table-responsive no-padding" }, [
               _c("table", { staticClass: "table table-hover" }, [
-                _c("tbody", [
+                _c("tbody", { staticClass: "text-center" }, [
                   _c("tr", [
                     _c("th", [_vm._v("ID")]),
                     _vm._v(" "),
@@ -37475,15 +37569,171 @@ var staticRenderFns = [
                   ]),
                   _vm._v(" "),
                   _c("tr", [
-                    _c("td", [_vm._v("183")]),
+                    _c("td", [_vm._v("1")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("John Doe")]),
+                    _c("td", [_vm._v("Juyel Rana")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("11-7-2014")]),
+                    _c("td", [_vm._v("mjuyelrana@gmail.com")]),
                     _vm._v(" "),
                     _c("td", [
                       _c("span", { staticClass: "badge badge-success" }, [
                         _vm._v("Approved")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-info",
+                          attrs: { href: "#", title: "Edit" }
+                        },
+                        [_c("i", { staticClass: "fa fa-user-edit white" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { href: "#", title: "Delete" }
+                        },
+                        [_c("i", { staticClass: "fa fa-trash white" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { href: "#", title: "Published" }
+                        },
+                        [_c("i", { staticClass: "fa fa-arrow-up white" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-warning",
+                          attrs: { href: "#", title: "Unpublished" }
+                        },
+                        [_c("i", { staticClass: "fa fa-arrow-down red" })]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("2")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("Juyel Rana")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("mjuyelrana@gmail.com")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("span", { staticClass: "badge badge-success" }, [
+                        _vm._v("Approved")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-info",
+                          attrs: { href: "#", title: "Edit" }
+                        },
+                        [_c("i", { staticClass: "fa fa-user-edit white" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { href: "#", title: "Delete" }
+                        },
+                        [_c("i", { staticClass: "fa fa-trash white" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { href: "#", title: "Published" }
+                        },
+                        [_c("i", { staticClass: "fa fa-arrow-up white" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-warning",
+                          attrs: { href: "#", title: "Unpublished" }
+                        },
+                        [_c("i", { staticClass: "fa fa-arrow-down red" })]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("3")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("Juyel Rana")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("mjuyelrana@gmail.com")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("span", { staticClass: "badge badge-success" }, [
+                        _vm._v("Approved")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-info",
+                          attrs: { href: "#", title: "Edit" }
+                        },
+                        [_c("i", { staticClass: "fa fa-user-edit white" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { href: "#", title: "Delete" }
+                        },
+                        [_c("i", { staticClass: "fa fa-trash white" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { href: "#", title: "Published" }
+                        },
+                        [_c("i", { staticClass: "fa fa-arrow-up white" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-warning",
+                          attrs: { href: "#", title: "Unpublished" }
+                        },
+                        [_c("i", { staticClass: "fa fa-arrow-down red" })]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("4")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("Juyel Rana")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("mjuyelrana@gmail.com")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("span", { staticClass: "badge badge-danger" }, [
+                        _vm._v("Rejected")
                       ])
                     ]),
                     _vm._v(" "),
@@ -37530,7 +37780,83 @@ var staticRenderFns = [
             ])
           ])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "addNewModal",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "addNewLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-dialog-centered",
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "modal-title text-center",
+                      attrs: { id: "addNewLabel" }
+                    },
+                    [_vm._v("Add New User")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "close",
+                      attrs: {
+                        type: "button",
+                        "data-dismiss": "modal",
+                        "aria-label": "Close"
+                      }
+                    },
+                    [
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("×")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("Save")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      )
     ])
   }
 ]
