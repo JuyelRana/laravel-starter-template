@@ -2109,12 +2109,17 @@ __webpack_require__.r(__webpack_exports__);
         type: 'success',
         title: 'User created successfully'
       });
-      this.$Progress.finish();
-      this.loadUsers();
+      this.$Progress.finish(); // this.loadUsers();
     }
   },
   created: function created() {
-    this.loadUsers();
+    var _this2 = this;
+
+    this.loadUsers(); // After Every 3 seconds loadUsers() function will triggered
+
+    setInterval(function () {
+      return _this2.loadUsers();
+    }, 3000);
   }
 });
 

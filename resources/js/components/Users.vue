@@ -153,11 +153,14 @@
                 });
 
                 this.$Progress.finish();
-                this.loadUsers();
+                // this.loadUsers();
             }
         },
         created() {
+
             this.loadUsers();
+            // After Every 3 seconds loadUsers() function will triggered
+            setInterval(() => this.loadUsers(), 3000);
         }
     }
 </script>
