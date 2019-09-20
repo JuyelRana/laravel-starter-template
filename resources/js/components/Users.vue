@@ -21,61 +21,16 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Type</th>
+                                <th>Registered At</th>
                                 <th>Modify</th>
+
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Juyel Rana</td>
-                                <td>mjuyelrana@gmail.com</td>
-                                <td><span class="badge badge-success">Approved</span></td>
-                                <td>
-                                    <a href="#" class="btn btn-info" title="Edit"> <i class="fa fa-user-edit white"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger" title="Delete"> <i class="fa fa-trash white"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-success" title="Published"> <i
-                                        class="fa fa-arrow-up white"></i> </a>
-                                    <a href="#" class="btn btn-warning" title="Unpublished"> <i
-                                        class="fa fa-arrow-down red"></i> </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Juyel Rana</td>
-                                <td>mjuyelrana@gmail.com</td>
-                                <td><span class="badge badge-success">Approved</span></td>
-                                <td>
-                                    <a href="#" class="btn btn-info" title="Edit"> <i class="fa fa-user-edit white"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger" title="Delete"> <i class="fa fa-trash white"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-success" title="Published"> <i
-                                        class="fa fa-arrow-up white"></i> </a>
-                                    <a href="#" class="btn btn-warning" title="Unpublished"> <i
-                                        class="fa fa-arrow-down red"></i> </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Juyel Rana</td>
-                                <td>mjuyelrana@gmail.com</td>
-                                <td><span class="badge badge-success">Approved</span></td>
-                                <td>
-                                    <a href="#" class="btn btn-info" title="Edit"> <i class="fa fa-user-edit white"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger" title="Delete"> <i class="fa fa-trash white"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-success" title="Published"> <i
-                                        class="fa fa-arrow-up white"></i> </a>
-                                    <a href="#" class="btn btn-warning" title="Unpublished"> <i
-                                        class="fa fa-arrow-down red"></i> </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Juyel Rana</td>
-                                <td>mjuyelrana@gmail.com</td>
-                                <td><span class="badge badge-danger">Rejected</span></td>
+                            <tr v-for="user in users" :key="user.id">
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{user.type}}</td>
+                                <td>{{user.created_at}}</td>
                                 <td>
                                     <a href="#" class="btn btn-info" title="Edit"> <i class="fa fa-user-edit white"></i>
                                     </a>
@@ -169,6 +124,7 @@
         components: {HasError},
         data() {
             return {
+                users: {},
                 form: new Form({
                     name: '',
                     email: '',
@@ -180,12 +136,18 @@
             }
         },
         methods: {
+
+            loadUsers() {
+                axios.get("api/user").then(({data}) => (this.users = data.data));
+            },
+
             createUser() {
                 this.form.post('api/user');
+                this.loadUsers();
             }
         },
-        mounted() {
-            console.log('Component mounted.')
+        created() {
+            this.loadUsers();
         }
     }
 </script>

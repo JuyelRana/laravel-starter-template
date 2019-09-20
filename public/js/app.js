@@ -2074,51 +2074,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2126,6 +2081,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      users: {},
       form: new Form({
         name: '',
         email: '',
@@ -2137,12 +2093,21 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    loadUsers: function loadUsers() {
+      var _this = this;
+
+      axios.get("api/user").then(function (_ref) {
+        var data = _ref.data;
+        return _this.users = data.data;
+      });
+    },
     createUser: function createUser() {
       this.form.post('api/user');
+      this.loadUsers();
     }
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  created: function created() {
+    this.loadUsers();
   }
 });
 
@@ -38737,7 +38702,42 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "row mt-4" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "box-body table-responsive no-padding" }, [
+            _c("table", { staticClass: "table table-hover" }, [
+              _c(
+                "tbody",
+                { staticClass: "text-center" },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._l(_vm.users, function(user) {
+                    return _c("tr", { key: user.id }, [
+                      _c("td", [_vm._v(_vm._s(user.id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.email))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.type))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.created_at))]),
+                      _vm._v(" "),
+                      _vm._m(2, true)
+                    ])
+                  })
+                ],
+                2
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -38760,7 +38760,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "form",
@@ -38999,7 +38999,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _vm._m(4)
                 ]
               )
             ])
@@ -39014,257 +39014,79 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-4" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h3", { staticClass: "card-title" }, [_vm._v("Users List")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-tools" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-success",
-                  attrs: {
-                    "data-toggle": "modal",
-                    "data-target": "#addNewModal"
-                  }
-                },
-                [
-                  _vm._v("\n                            Add New "),
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "box-body table-responsive no-padding" }, [
-            _c("table", { staticClass: "table table-hover" }, [
-              _c("tbody", { staticClass: "text-center" }, [
-                _c("tr", [
-                  _c("th", [_vm._v("ID")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Name")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Email")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Type")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Modify")])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("1")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Juyel Rana")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("mjuyelrana@gmail.com")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("span", { staticClass: "badge badge-success" }, [
-                      _vm._v("Approved")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-info",
-                        attrs: { href: "#", title: "Edit" }
-                      },
-                      [_c("i", { staticClass: "fa fa-user-edit white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { href: "#", title: "Delete" }
-                      },
-                      [_c("i", { staticClass: "fa fa-trash white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-success",
-                        attrs: { href: "#", title: "Published" }
-                      },
-                      [_c("i", { staticClass: "fa fa-arrow-up white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-warning",
-                        attrs: { href: "#", title: "Unpublished" }
-                      },
-                      [_c("i", { staticClass: "fa fa-arrow-down red" })]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("2")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Juyel Rana")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("mjuyelrana@gmail.com")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("span", { staticClass: "badge badge-success" }, [
-                      _vm._v("Approved")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-info",
-                        attrs: { href: "#", title: "Edit" }
-                      },
-                      [_c("i", { staticClass: "fa fa-user-edit white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { href: "#", title: "Delete" }
-                      },
-                      [_c("i", { staticClass: "fa fa-trash white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-success",
-                        attrs: { href: "#", title: "Published" }
-                      },
-                      [_c("i", { staticClass: "fa fa-arrow-up white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-warning",
-                        attrs: { href: "#", title: "Unpublished" }
-                      },
-                      [_c("i", { staticClass: "fa fa-arrow-down red" })]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("3")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Juyel Rana")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("mjuyelrana@gmail.com")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("span", { staticClass: "badge badge-success" }, [
-                      _vm._v("Approved")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-info",
-                        attrs: { href: "#", title: "Edit" }
-                      },
-                      [_c("i", { staticClass: "fa fa-user-edit white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { href: "#", title: "Delete" }
-                      },
-                      [_c("i", { staticClass: "fa fa-trash white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-success",
-                        attrs: { href: "#", title: "Published" }
-                      },
-                      [_c("i", { staticClass: "fa fa-arrow-up white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-warning",
-                        attrs: { href: "#", title: "Unpublished" }
-                      },
-                      [_c("i", { staticClass: "fa fa-arrow-down red" })]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("4")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Juyel Rana")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("mjuyelrana@gmail.com")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("span", { staticClass: "badge badge-danger" }, [
-                      _vm._v("Rejected")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-info",
-                        attrs: { href: "#", title: "Edit" }
-                      },
-                      [_c("i", { staticClass: "fa fa-user-edit white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { href: "#", title: "Delete" }
-                      },
-                      [_c("i", { staticClass: "fa fa-trash white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-success",
-                        attrs: { href: "#", title: "Published" }
-                      },
-                      [_c("i", { staticClass: "fa fa-arrow-up white" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-warning",
-                        attrs: { href: "#", title: "Unpublished" }
-                      },
-                      [_c("i", { staticClass: "fa fa-arrow-down red" })]
-                    )
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Users List")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            attrs: { "data-toggle": "modal", "data-target": "#addNewModal" }
+          },
+          [
+            _vm._v("\n                            Add New "),
+            _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+          ]
+        )
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("ID")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Email")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Type")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Registered At")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Modify")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "a",
+        { staticClass: "btn btn-info", attrs: { href: "#", title: "Edit" } },
+        [_c("i", { staticClass: "fa fa-user-edit white" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { href: "#", title: "Delete" }
+        },
+        [_c("i", { staticClass: "fa fa-trash white" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-success",
+          attrs: { href: "#", title: "Published" }
+        },
+        [_c("i", { staticClass: "fa fa-arrow-up white" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-warning",
+          attrs: { href: "#", title: "Unpublished" }
+        },
+        [_c("i", { staticClass: "fa fa-arrow-down red" })]
+      )
     ])
   },
   function() {
