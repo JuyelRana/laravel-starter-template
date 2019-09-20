@@ -29,8 +29,8 @@
                                 <td>{{ user.id }}</td>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
-                                <td>{{user.type}}</td>
-                                <td>{{user.created_at}}</td>
+                                <td>{{user.type | firstLetterUpperCase}}</td>
+                                <td>{{user.created_at | diffDate}}</td>
                                 <td>
                                     <a href="#" class="btn btn-info" title="Edit"> <i class="fa fa-user-edit white"></i>
                                     </a>

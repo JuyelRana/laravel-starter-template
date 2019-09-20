@@ -8,6 +8,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import moment from 'moment';
 import {Form, HasError, AlertError} from 'vform'
 
 window.Form = Form;
@@ -28,6 +29,23 @@ const router = new VueRouter({
     routes,
     mode: 'history'
 })
+
+//Global function to upercase first letter of a word
+Vue.filter('firstLetterUpperCase', function (value) {
+    if (!value) return '';
+    value = value.toString();
+    return value.charAt(0).toUpperCase() + value.slice(1);
+});
+
+//Convert Date as month/day/year
+Vue.filter('mdyDate', function (date) {
+    return moment(date).format('MMMM Do YYYY');
+});
+
+//get time difference between present and created date
+Vue.filter('diffDate', function (date) {
+    return moment(date).fromNow();
+});
 
 /**
  * The following block of code may be used to automatically register your
