@@ -2103,12 +2103,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     createUser: function createUser() {
       this.$Progress.start();
-      this.form.post('api/user');
-      Fire.$emit('AfterCreate');
-      $('#addNewModal').modal('hide');
-      toast.fire({
-        type: 'success',
-        title: 'User created successfully'
+      this.form.post('api/user').then(function () {
+        Fire.$emit('AfterCreate');
+        $('#addNewModal').modal('hide');
+        toast.fire({
+          type: 'success',
+          title: 'User created successfully!'
+        });
+      })["catch"](function () {
+        toast.fire({
+          type: 'error',
+          title: 'User not created!'
+        });
       });
       this.$Progress.finish(); // this.loadUsers();
     }
