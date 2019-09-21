@@ -22,8 +22,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/js/components/Users.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="152" column="55" selection-start-line="152" selection-start-column="55" selection-end-line="152" selection-end-column="55" />
+            <state relative-caret-position="163">
+              <caret line="62" column="114" selection-start-line="62" selection-start-column="114" selection-end-line="62" selection-end-column="114" />
+              <folding>
+                <element signature="e#3141#3148#1" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -283,12 +286,12 @@
       <updated>1568961529027</updated>
       <workItem from="1568961533437" duration="6657000" />
       <workItem from="1568979084850" duration="12569000" />
-      <workItem from="1569080987682" duration="4797000" />
+      <workItem from="1569080987682" duration="6514000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24023000" />
+    <option name="totallyTimeSpent" value="25740000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -388,8 +391,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/Users.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="152" column="55" selection-start-line="152" selection-start-column="55" selection-end-line="152" selection-end-column="55" />
+        <state relative-caret-position="163">
+          <caret line="62" column="114" selection-start-line="62" selection-start-column="114" selection-end-line="62" selection-end-column="114" />
+          <folding>
+            <element signature="e#3141#3148#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

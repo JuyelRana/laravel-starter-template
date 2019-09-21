@@ -60,24 +60,25 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-center" id="addNewLabel">Add New User</h5>
+                        <h5 class="modal-title text-center" id="addNewLabell" v-show="editmode">Update User's Info</h5>
+                        <h5 class="modal-title text-center" id="addNewLabel" v-show="!editmode">Add New User</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
 
 
-                    <form @submit.prevent="createUser">
+                    <form @submit.prevent="editmode ? updateUser() : createUser()">
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <input v-model="form.name" type="text" name="name" placeholder="Name"
+                                <input v-model="form.name" type="text" name="name" placeholder="Juyel Rana"
                                        class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
                                 <has-error :form="form" field="name"></has-error>
                             </div>
 
                             <div class="form-group">
-                                <input v-model="form.email" type="email" name="email" placeholder="Email Address"
+                                <input v-model="form.email" type="email" name="email" placeholder="juyel@gmail.com"
                                        class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
                                 <has-error :form="form" field="email"></has-error>
                             </div>
@@ -101,7 +102,8 @@
 
                             <div class="form-group">
                                 <input v-model="form.password" type="password" name="password" id="password"
-                                       class="form-control" :class="{ 'is-invalid': form.errors.has('password')}">
+                                       class="form-control" :class="{ 'is-invalid': form.errors.has('password')}"
+                                       placeholder="********">
                                 <has-error :form="form" field="password"></has-error>
                             </div>
 
@@ -109,7 +111,8 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" v-show="editmode" class="btn btn-success">Update</button>
+                            <button type="submit" v-show="!editmode" class="btn btn-primary">Save</button>
                         </div>
                     </form>
                 </div>
@@ -127,6 +130,7 @@
 
         data() {
             return {
+                editmode: false,
                 users: {},
                 form: new Form({
                     name: '',
@@ -141,11 +145,19 @@
 
         methods: {
 
+            //Update the user data
+            updateUser() {
+                console.log("Edit")
+            },
+
             // open edit form modal window
             editModal(user) {
 
+                //To ensure edit modal
+                this.editmode = true;
+
                 //first reset the form
-                this.form.reset();
+                this.form.clear();
 
                 //Show the add-new-user modal
                 $('#addNewModal').modal('show');
@@ -156,8 +168,13 @@
 
             // Open New Modal
             newModal() {
+
+                //To ensure addNewModal modal
+                this.editmode = false;
+
                 //first reset the form
                 this.form.reset();
+
                 //Show the add-new-user modal
                 $('#addNewModal').modal('show');
             },
