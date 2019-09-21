@@ -2075,6 +2075,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2094,6 +2095,22 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    // open edit form modal window
+    editModal: function editModal(user) {
+      //first reset the form
+      this.form.reset(); //Show the add-new-user modal
+
+      $('#addNewModal').modal('show'); //Automatically fill the edit form date
+
+      this.form.fill(user);
+    },
+    // Open New Modal
+    newModal: function newModal() {
+      //first reset the form
+      this.form.reset(); //Show the add-new-user modal
+
+      $('#addNewModal').modal('show');
+    },
     //Delete a user
     deleteUser: function deleteUser(id) {
       var _this = this;
@@ -59280,7 +59297,27 @@ var render = function() {
     _c("div", { staticClass: "row mt-4" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "card-header" }, [
+            _c("h3", { staticClass: "card-title" }, [_vm._v("Users List")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-tools" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  on: {
+                    click: function($event) {
+                      return _vm.newModal()
+                    }
+                  }
+                },
+                [
+                  _vm._v("\n                            Add New "),
+                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                ]
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "box-body table-responsive no-padding" }, [
             _c("table", { staticClass: "table table-hover" }, [
@@ -59288,7 +59325,7 @@ var render = function() {
                 "tbody",
                 { staticClass: "text-center" },
                 [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _vm._l(_vm.users, function(user) {
                     return _c("tr", { key: user.id }, [
@@ -59309,7 +59346,19 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("td", [
-                        _vm._m(2, true),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-info",
+                            attrs: { href: "#", title: "Edit" },
+                            on: {
+                              click: function($event) {
+                                return _vm.editModal(user)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-user-edit white" })]
+                        ),
                         _vm._v(" "),
                         _c(
                           "a",
@@ -59325,9 +59374,9 @@ var render = function() {
                           [_c("i", { staticClass: "fa fa-trash white" })]
                         ),
                         _vm._v(" "),
-                        _vm._m(3, true),
+                        _vm._m(1, true),
                         _vm._v(" "),
-                        _vm._m(4, true)
+                        _vm._m(2, true)
                       ])
                     ])
                   })
@@ -59361,7 +59410,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(5),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "form",
@@ -59600,7 +59649,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(6)
+                  _vm._m(4)
                 ]
               )
             ])
@@ -59611,28 +59660,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Users List")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-tools" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success",
-            attrs: { "data-toggle": "modal", "data-target": "#addNewModal" }
-          },
-          [
-            _vm._v("\n                            Add New "),
-            _c("i", { staticClass: "fas fa-user-plus fa-fw" })
-          ]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -59650,16 +59677,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Modify")])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "btn btn-info", attrs: { href: "#", title: "Edit" } },
-      [_c("i", { staticClass: "fa fa-user-edit white" })]
-    )
   },
   function() {
     var _vm = this

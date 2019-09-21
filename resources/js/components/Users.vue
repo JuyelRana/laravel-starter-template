@@ -7,7 +7,7 @@
                         <h3 class="card-title">Users List</h3>
 
                         <div class="card-tools">
-                            <button class="btn btn-success" data-toggle="modal" data-target="#addNewModal">
+                            <button class="btn btn-success" @click="newModal()">
                                 Add New <i class="fas fa-user-plus fa-fw"></i>
                             </button>
                         </div>
@@ -32,7 +32,8 @@
                                 <td>{{user.type | firstLetterUpperCase}}</td>
                                 <td>{{user.created_at | diffDate}}</td>
                                 <td>
-                                    <a href="#" class="btn btn-info" title="Edit"> <i class="fa fa-user-edit white"></i>
+                                    <a href="#" class="btn btn-info" title="Edit" @click="editModal(user)">
+                                        <i class="fa fa-user-edit white"></i>
                                     </a>
                                     <a href="#" class="btn btn-danger" title="Delete" @click="deleteUser(user.id)">
                                         <i class="fa fa-trash white"></i>
@@ -123,6 +124,7 @@
 
     export default {
         components: {HasError},
+
         data() {
             return {
                 users: {},
@@ -136,7 +138,29 @@
                 })
             }
         },
+
         methods: {
+
+            // open edit form modal window
+            editModal(user) {
+
+                //first reset the form
+                this.form.reset();
+
+                //Show the add-new-user modal
+                $('#addNewModal').modal('show');
+
+                //Automatically fill the edit form date
+                this.form.fill(user);
+            },
+
+            // Open New Modal
+            newModal() {
+                //first reset the form
+                this.form.reset();
+                //Show the add-new-user modal
+                $('#addNewModal').modal('show');
+            },
 
             //Delete a user
             deleteUser(id) {
@@ -171,7 +195,8 @@
                         }
                     }
                 )
-            },
+            }
+            ,
 
             //Get all users data form server
             loadUsers() {
