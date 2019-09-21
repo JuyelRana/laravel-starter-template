@@ -2089,6 +2089,7 @@ __webpack_require__.r(__webpack_exports__);
       editmode: false,
       users: {},
       form: new Form({
+        id: '',
         name: '',
         email: '',
         password: '',
@@ -2101,7 +2102,27 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     //Update the user data
     updateUser: function updateUser() {
-      console.log("Edit");
+      var _this = this;
+
+      this.$Progress.start(); // console.log("Edit")
+
+      this.form.put('api/user/' + this.form.id).then(function () {
+        // If user info updated, hide the updated modal
+        $('#addNewModal').modal('hide');
+        toast.fire({
+          type: 'success',
+          title: 'User updated successfully!'
+        }); //Refresh the table
+
+        Fire.$emit('AfterCreate'); // this.$Progress.end();
+      })["catch"](function () {
+        _this.$Progress.fail();
+
+        toast.fire({
+          type: 'error',
+          title: 'User not updated!'
+        });
+      });
     },
     // open edit form modal window
     editModal: function editModal(user) {
@@ -2125,7 +2146,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     //Delete a user
     deleteUser: function deleteUser(id) {
-      var _this = this;
+      var _this2 = this;
 
       swal.fire({
         title: 'Are you sure?',
@@ -2138,8 +2159,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         //Send request to the server
         if (result.value) {
-          _this.form["delete"]('api/user/' + id).then(function () {
-            swal.fire('Deleted!', 'Your file has been deleted.', 'success'); //This is load all users after a user deleted
+          _this2.form["delete"]('api/user/' + id).then(function () {
+            swal.fire('Deleted!', 'User has been deleted.', 'success'); //This is load all users after a user deleted
 
             Fire.$emit('AfterCreate');
           })["catch"](function () {
@@ -2151,11 +2172,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     //Get all users data form server
     loadUsers: function loadUsers() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("api/user").then(function (_ref) {
         var data = _ref.data;
-        return _this2.users = data.data;
+        return _this3.users = data.data;
       });
     },
     // Create a new user
@@ -2178,13 +2199,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
     this.loadUsers(); // After Every 3 seconds loadUsers() function will triggered
     // setInterval(() => this.loadUsers(), 3000);
 
     Fire.$on('AfterCreate', function () {
-      _this3.loadUsers();
+      _this4.loadUsers();
     });
   }
 });

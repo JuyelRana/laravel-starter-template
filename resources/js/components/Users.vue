@@ -133,6 +133,7 @@
                 editmode: false,
                 users: {},
                 form: new Form({
+                    id: '',
                     name: '',
                     email: '',
                     password: '',
@@ -147,7 +148,31 @@
 
             //Update the user data
             updateUser() {
-                console.log("Edit")
+                this.$Progress.start();
+                // console.log("Edit")
+                this.form.put('api/user/' + this.form.id)
+                    .then(() => {
+                        // If user info updated, hide the updated modal
+                        $('#addNewModal').modal('hide');
+
+                        toast.fire({
+                            type: 'success',
+                            title: 'User updated successfully!',
+                        });
+
+                        //Refresh the table
+                        Fire.$emit('AfterCreate');
+
+                        // this.$Progress.end();
+                    })
+                    .catch(() => {
+                        this.$Progress.fail();
+
+                        toast.fire({
+                            type: 'error',
+                            title: 'User not updated!',
+                        });
+                    });
             },
 
             // open edit form modal window
@@ -195,7 +220,7 @@
                             this.form.delete('api/user/' + id).then(() => {
                                 swal.fire(
                                     'Deleted!',
-                                    'Your file has been deleted.',
+                                    'User has been deleted.',
                                     'success'
                                 )
                                 //This is load all users after a user deleted
