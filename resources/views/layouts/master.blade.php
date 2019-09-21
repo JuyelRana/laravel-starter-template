@@ -93,6 +93,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <router-link to="/developer" class="nav-link">
+                            <i class="nav-icon fas fa-cogs cyan"></i>
+                            <p>Developer</p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link to="/profile" class="nav-link">
                             <i class="nav-icon fas fa-user cyan"></i>
                             <p>Profile</p>
