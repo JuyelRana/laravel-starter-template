@@ -2074,6 +2074,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2093,14 +2094,42 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    loadUsers: function loadUsers() {
+    //Delete a user
+    deleteUser: function deleteUser(id) {
       var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        //Send request to the server
+        if (result.value) {
+          _this.form["delete"]('api/user/' + id).then(function () {
+            swal.fire('Deleted!', 'Your file has been deleted.', 'success'); //This is load all users after a user deleted
+
+            Fire.$emit('AfterCreate');
+          })["catch"](function () {
+            //Catch the error
+            swal.fire('Failed!', 'Woops!! Something is wrong.', 'warning');
+          });
+        }
+      });
+    },
+    //Get all users data form server
+    loadUsers: function loadUsers() {
+      var _this2 = this;
 
       axios.get("api/user").then(function (_ref) {
         var data = _ref.data;
-        return _this.users = data.data;
+        return _this2.users = data.data;
       });
     },
+    // Create a new user
     createUser: function createUser() {
       this.$Progress.start();
       this.form.post('api/user').then(function () {
@@ -2120,13 +2149,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.loadUsers(); // After Every 3 seconds loadUsers() function will triggered
     // setInterval(() => this.loadUsers(), 3000);
 
     Fire.$on('AfterCreate', function () {
-      _this2.loadUsers();
+      _this3.loadUsers();
     });
   }
 });
@@ -59279,7 +59308,27 @@ var render = function() {
                         _vm._v(_vm._s(_vm._f("diffDate")(user.created_at)))
                       ]),
                       _vm._v(" "),
-                      _vm._m(2, true)
+                      _c("td", [
+                        _vm._m(2, true),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { href: "#", title: "Delete" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteUser(user.id)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-trash white" })]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(3, true),
+                        _vm._v(" "),
+                        _vm._m(4, true)
+                      ])
                     ])
                   })
                 ],
@@ -59312,7 +59361,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(5),
               _vm._v(" "),
               _c(
                 "form",
@@ -59551,7 +59600,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _vm._m(6)
                 ]
               )
             ])
@@ -59606,40 +59655,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "a",
-        { staticClass: "btn btn-info", attrs: { href: "#", title: "Edit" } },
-        [_c("i", { staticClass: "fa fa-user-edit white" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { href: "#", title: "Delete" }
-        },
-        [_c("i", { staticClass: "fa fa-trash white" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-success",
-          attrs: { href: "#", title: "Published" }
-        },
-        [_c("i", { staticClass: "fa fa-arrow-up white" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-warning",
-          attrs: { href: "#", title: "Unpublished" }
-        },
-        [_c("i", { staticClass: "fa fa-arrow-down red" })]
-      )
-    ])
+    return _c(
+      "a",
+      { staticClass: "btn btn-info", attrs: { href: "#", title: "Edit" } },
+      [_c("i", { staticClass: "fa fa-user-edit white" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-success",
+        attrs: { href: "#", title: "Published" }
+      },
+      [_c("i", { staticClass: "fa fa-arrow-up white" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-warning",
+        attrs: { href: "#", title: "Unpublished" }
+      },
+      [_c("i", { staticClass: "fa fa-arrow-down red" })]
+    )
   },
   function() {
     var _vm = this

@@ -34,7 +34,8 @@
                                 <td>
                                     <a href="#" class="btn btn-info" title="Edit"> <i class="fa fa-user-edit white"></i>
                                     </a>
-                                    <a href="#" class="btn btn-danger" title="Delete"> <i class="fa fa-trash white"></i>
+                                    <a href="#" class="btn btn-danger" title="Delete" @click="deleteUser(user.id)">
+                                        <i class="fa fa-trash white"></i>
                                     </a>
                                     <a href="#" class="btn btn-success" title="Published"> <i
                                         class="fa fa-arrow-up white"></i> </a>
@@ -137,10 +138,48 @@
         },
         methods: {
 
-            loadUsers() {
-                axios.get("api/user").then(({data}) => (this.users = data.data));
+            //Delete a user
+            deleteUser(id) {
+                swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                        //Send request to the server
+                        if (result.value) {
+                            this.form.delete('api/user/' + id).then(() => {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                //This is load all users after a user deleted
+                                Fire.$emit('AfterCreate');
+
+                            }).catch(() => {
+                                //Catch the error
+                                swal.fire(
+                                    'Failed!',
+                                    'Woops!! Something is wrong.',
+                                    'warning'
+                                )
+                            });
+                        }
+                    }
+                )
             },
 
+            //Get all users data form server
+            loadUsers() {
+                axios.get("api/user").then(({data}) => (this.users = data.data));
+            }
+            ,
+
+            // Create a new user
             createUser() {
                 this.$Progress.start();
 
