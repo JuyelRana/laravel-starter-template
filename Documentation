@@ -1,0 +1,9 @@
+1. https://vuejs.org/ 
+2. For human readable time (https://momentjs.com/)
+3. Vue ProgressBar (http://hilongjw.github.io/vue-progressbar/)   installation: npm install vue-progressbar --save
+4.  Sweetalert (https://sweetalert2.github.io/#download) installation: npm install sweetalert2 --save
+5. Laravel Passport For protect api (https://laravel.com/docs/6.x/passport#password-grant-tokens)
+
+11. Using VFrom for Backend Error Handling in Laravel and Vuejs 
+    Validation Form (https://github.com/cretueusebiu/vform) 
+	

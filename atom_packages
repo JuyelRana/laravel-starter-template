@@ -1,0 +1,5 @@
+1. Laravel Vue => apm install atom-vue, apm install atom-axios, apm install atom-vue-router
+2. Atom Beatify => apm install atom-beautify
+3. Atom Linter (to show error on code) => apm install linter
+4. Autocomplete-paths (Auto complete Code) => apm install autocomplete-paths
+5. Atom-File-Icons package => apm install file-icons
