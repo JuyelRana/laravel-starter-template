@@ -96,6 +96,15 @@ class UserController extends Controller
       //Photo field have to change with new value
       $request->merge(['photo'=>$name]);
 
+      // store old user photo
+      $userPhoto = public_path('img/profile/').$currentPhoto;
+
+      //check file has photo or not
+      if(file_exists($userPhoto)){
+        //if file has photo then delete the photo
+        @unlink($userPhoto);
+      }
+
     }
 
     if(!empty($request->password)){
@@ -122,6 +131,15 @@ class UserController extends Controller
     $user = User::findOrFail($id);
 
     if($current_user->id != $user->id){
+
+      // store user photo
+      $userPhoto = public_path('img/profile/').$user->photo;
+      
+      //check file has photo or not
+      if(file_exists($userPhoto)){
+        //if file has photo then delete the photo
+        @unlink($userPhoto);
+      }
       //delete the user
       $user->delete();
 
