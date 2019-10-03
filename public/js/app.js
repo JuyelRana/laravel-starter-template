@@ -2107,6 +2107,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2115,8 +2133,8 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         email: '',
         password: '',
-        type: '',
         bio: '',
+        type: '',
         photo: ''
       })
     };
@@ -2142,8 +2160,18 @@ __webpack_require__.r(__webpack_exports__);
         Fire.$emit('AfterCreate');
 
         _this.$Progress.finish();
+
+        toast.fire({
+          type: 'success',
+          title: 'Profile updated successfully!'
+        });
       })["catch"](function () {
         _this.$Progress.fail();
+
+        toast.fire({
+          type: 'error',
+          title: 'Profile not updated!'
+        });
       });
     },
     updateProfile: function updateProfile(e) {
@@ -2191,42 +2219,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform_src_components_HasError__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform/src/components/HasError */ "./node_modules/vform/src/components/HasError.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7704,7 +7696,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.widget-user-header {\n    background-position: center center;\n    background-size: cover;\n}\n.widget-user .widget-user-header {\n    border-top-left-radius: 0.25rem;\n    border-top-right-radius: 0.25rem;\n    height: 200px;\n    padding: 1rem;\n    text-align: center;\n    background-position-y: top;\n}\n.widget-user .card-footer {\n    padding-top: 10px;\n}\n.description-block {\n    display: block;\n    margin: 5px 0;\n    text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.widget-user-header {\n  background-position: center center;\n  background-size: cover;\n}\n.widget-user .widget-user-header {\n  border-top-left-radius: 0.25rem;\n  border-top-right-radius: 0.25rem;\n  height: 200px;\n  padding: 1rem;\n  text-align: center;\n  background-position-y: top;\n}\n.widget-user .card-footer {\n  padding-top: 10px;\n}\n.description-block {\n  display: block;\n  margin: 5px 0;\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -61285,9 +61277,9 @@ var render = function() {
                         "label",
                         {
                           staticClass: "col-sm-2 control-label",
-                          attrs: { for: "inputExperience" }
+                          attrs: { for: "inputBio" }
                         },
-                        [_vm._v("Experience")]
+                        [_vm._v("Bio")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -61305,10 +61297,7 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             class: { "is-invalid": _vm.form.errors.has("bio") },
-                            attrs: {
-                              id: "inputExperience",
-                              placeholder: "Experience"
-                            },
+                            attrs: { id: "inputBio", placeholder: "Bio" },
                             domProps: { value: _vm.form.bio },
                             on: {
                               input: function($event) {
@@ -61322,6 +61311,84 @@ var render = function() {
                           _vm._v(" "),
                           _c("has-error", {
                             attrs: { form: _vm.form, field: "bio" }
+                          })
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-2 control-label",
+                          attrs: { for: "usertype" }
+                        },
+                        [_vm._v("User Type")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-12" },
+                        [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.type,
+                                  expression: "form.type"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid": _vm.form.errors.has("type")
+                              },
+                              attrs: { name: "type", id: "type" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form,
+                                    "type",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select User Role")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "admin" } }, [
+                                _vm._v("Admin")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "user" } }, [
+                                _vm._v("Standard User")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "author" } }, [
+                                _vm._v("Author")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "type" }
                           })
                         ],
                         1
@@ -61356,7 +61423,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "Passport (leave empty if\n                                        not changing)"
+                            "Password (leave empty if\n                  not changing)"
                           )
                         ]
                       ),
@@ -61381,7 +61448,7 @@ var render = function() {
                             attrs: {
                               type: "password",
                               id: "password",
-                              placeholder: "Passport"
+                              placeholder: "Password"
                             },
                             domProps: { value: _vm.form.password },
                             on: {
@@ -61422,7 +61489,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                            Update\n                                        "
+                              "\n                      Update\n                    "
                             )
                           ]
                         )
@@ -61575,7 +61642,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._v("\n                                    Add New "),
+                  _vm._v("\n                            Add New "),
                   _c("i", { staticClass: "fas fa-user-plus fa-fw" })
                 ]
               )

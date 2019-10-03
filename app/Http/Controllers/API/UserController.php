@@ -55,14 +55,11 @@ class UserController extends Controller
       'password' => 'sometimes|required|min:6'
     ]);
 
-    $user->update([
-      'name'     => $request->name ? $request->name : $user->name,
-      'email'    => $request->email ? $request->email : $user->email,
-      'type'     => $request->type ? $request->type : $user->type,
-      'bio'      => $request->bio ? $request->type : $user->bio,
-      'photo'    => $request->photo ? $request->photo : $user->photo,
-      'password' => $request->password ? Hash::make($request->password) : $user->password,
-    ]);
+    if(!empty($request->password)){
+      $request->merge(['password' => Hash::make($request['password'])]);
+    }
+
+    $user->update($request->all());
 
     return ['message' => 'Updated the user info!'];
   }
@@ -83,7 +80,7 @@ class UserController extends Controller
       'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
       'password' => 'sometimes|required|min:6'
     ]);
-    
+
 
     // Loged in user photo
     $currentPhoto = $user->photo;
@@ -119,11 +116,29 @@ class UserController extends Controller
   */
   public function destroy($id)
   {
+    //get loged in user
+    $current_user = auth('api')->user();
+
     $user = User::findOrFail($id);
 
-    //delete the user
-    $user->delete();
+    if($current_user->id != $user->id){
+      //delete the user
+      $user->delete();
 
-    return ['message' => 'User Deleted!'];
+      return response()->json([
+        'status' => 'success',
+        'msg' => "User successfully deleted!!",
+        'code' => 200,
+      ]);
+
+      // return ['message' => 'User Deleted!'];
+    }else {
+      return response()->json([
+        'status' => 'error',
+        'msg' => "User not deleted!!",
+        'code' => 400,
+      ], 400);
+    }
+
   }
 }
