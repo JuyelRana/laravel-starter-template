@@ -2125,6 +2125,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2409,15 +2410,15 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
-        //Send request to the server
+        // Send request to the server
         if (result.value) {
-          _this2.form["delete"]('api/user/' + id).then(function () {
-            swal.fire('Deleted!', 'User has been deleted.', 'success'); //This is load all users after a user deleted
-
-            Fire.$emit('AfterCreate');
-          })["catch"](function () {
-            //Catch the error
-            swal.fire('Failed!', 'Woops!! Something is wrong.', 'warning');
+          _this2.form["delete"]('api/user/' + id).then(function (response) {
+            if (response.data.status == 'success') {
+              swal('Deleted!', response.data.msg, 'success');
+              Fire.$emit('AfterCreate');
+            }
+          })["catch"](function (error) {
+            swal('Failed', error.data.msg, 'error');
           });
         }
       });
@@ -61146,7 +61147,7 @@ var render = function() {
           _c("div", { staticClass: "widget-user-image" }, [
             _c("img", {
               staticClass: "img-circle",
-              attrs: { src: "./img/profile.jpg", alt: "User Avatar" }
+              attrs: { src: _vm.getProfilePhoto(), alt: "User Avatar" }
             })
           ]),
           _vm._v(" "),
@@ -61642,7 +61643,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._v("\n                            Add New "),
+                  _vm._v("\n              Add New "),
                   _c("i", { staticClass: "fas fa-user-plus fa-fw" })
                 ]
               )
