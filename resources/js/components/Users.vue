@@ -210,21 +210,18 @@ export default {
           this.form.delete('api/user/'+id).then( (response) =>{
             if(response.data.status == 'success')
             {
-              swal(
+              swal.fire(
                 'Deleted!',
                 response.data.msg,
-                'success'
+                response.data.status
               )
 
               Fire.$emit('AfterCreate');
 
             }
-          }).catch((error) => {
-            swal(
-              'Failed',
-              error.data.msg,
-              'error'
-            )
+
+          }).catch( () => {
+              swal.fire("Failed!", "User not deleted!!", "error");
           });
         }
       })

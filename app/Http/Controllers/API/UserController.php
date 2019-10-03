@@ -134,7 +134,7 @@ class UserController extends Controller
 
       // store user photo
       $userPhoto = public_path('img/profile/').$user->photo;
-      
+
       //check file has photo or not
       if(file_exists($userPhoto)){
         //if file has photo then delete the photo
@@ -147,7 +147,7 @@ class UserController extends Controller
         'status' => 'success',
         'msg' => "User successfully deleted!!",
         'code' => 200,
-      ]);
+      ], 200);
 
       // return ['message' => 'User Deleted!'];
     }else {

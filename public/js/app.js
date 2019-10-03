@@ -2414,11 +2414,11 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           _this2.form["delete"]('api/user/' + id).then(function (response) {
             if (response.data.status == 'success') {
-              swal('Deleted!', response.data.msg, 'success');
+              swal.fire('Deleted!', response.data.msg, response.data.status);
               Fire.$emit('AfterCreate');
             }
-          })["catch"](function (error) {
-            swal('Failed', error.data.msg, 'error');
+          })["catch"](function () {
+            swal.fire("Failed!", "User not deleted!!", "error");
           });
         }
       });
