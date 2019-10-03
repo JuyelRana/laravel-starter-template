@@ -2107,19 +2107,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2167,7 +2154,7 @@ __webpack_require__.r(__webpack_exports__);
       var limit = 1024 * 1024 * 2;
 
       if (file['size'] > limit) {
-        swal({
+        swal.fire({
           type: 'error',
           title: 'Oops...',
           text: 'You are uploading a large file'
@@ -7717,7 +7704,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.widget-user-header {\n    background-position: center center;\n    background-size: cover;\n}\n.widget-user .widget-user-header {\n    border-top-left-radius: 0.25rem;\n    border-top-right-radius: 0.25rem;\n    height: 200px;\n    padding: 1rem;\n    text-align: center;\n    background-position-y: top;\n}\n.widget-user .card-footer {\n    padding-top: 10px;\n}\n.description-block {\n    display: block;\n    margin: 5px 0;\n    text-align: center;\n}\n\n", ""]);
+exports.push([module.i, "\n.widget-user-header {\n    background-position: center center;\n    background-size: cover;\n}\n.widget-user .widget-user-header {\n    border-top-left-radius: 0.25rem;\n    border-top-right-radius: 0.25rem;\n    height: 200px;\n    padding: 1rem;\n    text-align: center;\n    background-position-y: top;\n}\n.widget-user .card-footer {\n    padding-top: 10px;\n}\n.description-block {\n    display: block;\n    margin: 5px 0;\n    text-align: center;\n}\n", ""]);
 
 // exports
 
