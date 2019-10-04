@@ -288,6 +288,20 @@ export default {
     Fire.$on('AfterCreate', () => {
       this.loadUsers()
     })
+
+    // Listen an even
+    Fire.$on('searching', () =>{
+      // get data form parent
+      let query = this.$parent.search;
+      // send http request to the server
+      axios.get('api/findUser?q=' + query)
+      .then((data) => {
+        this.users = data.data
+      })
+      .catch(() => {
+
+      })
+    })
   }
 }
 </script>
