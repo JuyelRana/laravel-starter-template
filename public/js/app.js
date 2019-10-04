@@ -2145,6 +2145,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2239,7 +2245,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform_src_components_HasError__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform/src/components/HasError */ "./node_modules/vform/src/components/HasError.vue");
-//
 //
 //
 //
@@ -62279,7 +62284,22 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 mt-4" }, [
         _c("div", { staticClass: "card card-widget widget-user" }, [
-          _vm._m(0),
+          _c(
+            "div",
+            {
+              staticClass: "widget-user-header text-white",
+              staticStyle: { "background-image": "url('./img/profilebg.jpg')" }
+            },
+            [
+              _c("h3", { staticClass: "widget-user-username" }, [
+                _vm._v(_vm._s(this.form.name))
+              ]),
+              _vm._v(" "),
+              _c("h5", { staticClass: "widget-user-desc" }, [
+                _vm._v(_vm._s(this.form.bio))
+              ])
+            ]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "widget-user-image" }, [
             _c("img", {
@@ -62288,17 +62308,17 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(0)
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "tab-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "div",
@@ -62648,25 +62668,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "widget-user-header text-white",
-        staticStyle: { "background-image": "url('./img/profilebg.jpg')" }
-      },
-      [
-        _c("h3", { staticClass: "widget-user-username" }, [
-          _vm._v("Juyel Rana")
-        ]),
-        _vm._v(" "),
-        _c("h5", { staticClass: "widget-user-desc" }, [_vm._v("Web Developer")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-footer" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-sm-4 border-right" }, [
@@ -62799,9 +62800,9 @@ var render = function() {
                       [
                         _vm._m(0),
                         _vm._v(" "),
-                        _vm._l(_vm.users.data, function(user) {
-                          return _c("tr", { key: user.id }, [
-                            _c("td", [_vm._v(_vm._s(user.id))]),
+                        _vm._l(_vm.users.data, function(user, index) {
+                          return _c("tr", { key: index }, [
+                            _c("td", [_vm._v(_vm._s(++index))]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(user.name))]),
                             _vm._v(" "),

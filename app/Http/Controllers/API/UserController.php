@@ -19,7 +19,7 @@ class UserController extends Controller
   {
     // Check authorize admin
     if(\Gate::allows('isAdmin') || \Gate::allows('isAuthor')){
-      return User::latest()->paginate(5);
+      return User::latest()->paginate(10);
     }
   }
 

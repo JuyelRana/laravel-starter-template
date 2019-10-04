@@ -27,9 +27,8 @@
                   <th>Modify</th>
 
                 </tr>
-                <tr v-for="user in users.data" :key="user.id">
-                <!-- <  tr v-for="user in users.data" :key="user.id"> -->
-                  <td>{{ user.id }}</td>
+                <tr v-for="(user, index) in users.data" :key="index">
+                  <td>{{ ++index }}</td>
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
                   <td>{{user.type | firstLetterUpperCase}}</td>

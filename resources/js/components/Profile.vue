@@ -33,8 +33,8 @@
         <div class="card card-widget widget-user">
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white" style="background-image:url('./img/profilebg.jpg')">
-            <h3 class="widget-user-username">Juyel Rana</h3>
-            <h5 class="widget-user-desc">Web Developer</h5>
+            <h3 class="widget-user-username">{{ this.form.name }}</h3>
+            <h5 class="widget-user-desc">{{ this.form.bio }}</h5>
           </div>
           <div class="widget-user-image">
             <img class="img-circle" :src="getProfilePhoto()" alt="User Avatar">
@@ -75,20 +75,26 @@
 
       <div class="col-md-12">
         <div class="card">
+
           <div class="card-header p-2">
+
             <ul class="nav nav-pills">
               <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity</a>
               </li>
               <li class="nav-item"><a class="nav-link active show" href="#settings" data-toggle="tab">Settings</a>
               </li>
             </ul>
+
           </div><!-- /.card-header -->
+
           <div class="card-body">
             <div class="tab-content">
+
               <!-- Activity Tab -->
               <div class="tab-pane" id="activity">
                 <h3 class="text-center">Display User Activity</h3>
               </div>
+
               <!-- Setting Tab -->
               <div class="tab-pane active show" id="settings">
                 <form class="form-horizontal">
@@ -193,7 +199,7 @@ export default {
   mounted() {
     console.log('Component mounted.')
   },
-  
+
   methods: {
     getProfilePhoto() {
       let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/" + this.form.photo;
