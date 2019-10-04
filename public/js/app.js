@@ -2369,6 +2369,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2390,6 +2393,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    renderPhoto: function renderPhoto(user) {
+      // let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/" + this.form.photo;
+      var photo = user.photo ? "img/profile/" + user.photo : "assets/admin/images/admin.png";
+      return photo;
+    },
     // pagination function
     getResults: function getResults() {
       var _this = this;
@@ -2515,8 +2523,24 @@ __webpack_require__.r(__webpack_exports__);
       var query = _this5.$parent.search; // send http request to the server
 
       axios.get('api/findUser?q=' + query).then(function (data) {
-        _this5.users = data.data;
-      })["catch"](function () {});
+        // If found searching data
+        if (data.data.total > 0) {
+          _this5.users = data.data;
+        } else {
+          // If not found searching data then set empty array
+          data.data.length = 0;
+          _this5.users = data.data;
+          toast.fire({
+            type: 'error',
+            title: 'Search data not found!!'
+          });
+        }
+      })["catch"](function () {
+        toast.fire({
+          type: 'error',
+          title: 'Not found searching data!!'
+        });
+      });
     });
   }
 });
@@ -62815,6 +62839,18 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(user.name))]),
                             _vm._v(" "),
+                            _c("td", [
+                              _c("img", {
+                                staticClass: "img-fluid img-thumbnail",
+                                attrs: {
+                                  src: _vm.renderPhoto(user),
+                                  alt: "User Avatar",
+                                  width: "50",
+                                  height: "40"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(user.email))]),
                             _vm._v(" "),
                             _c("td", [
@@ -63254,6 +63290,8 @@ var staticRenderFns = [
       _c("th", [_vm._v("ID")]),
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Photo")]),
       _vm._v(" "),
       _c("th", [_vm._v("Email")]),
       _vm._v(" "),
@@ -79596,9 +79634,9 @@ var app = new Vue({
     search: ''
   },
   methods: {
-    searchit: function searchit() {
+    searchit: _.debounce(function () {
       Fire.$emit('searching');
-    }
+    }, 1000)
   }
 });
 

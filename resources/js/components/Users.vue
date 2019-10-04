@@ -21,6 +21,7 @@
                 <tr>
                   <th>ID</th>
                   <th>Name</th>
+                  <th>Photo</th>
                   <th>Email</th>
                   <th>Type</th>
                   <th>Registered At</th>
@@ -30,6 +31,8 @@
                 <tr v-for="(user, index) in users.data" :key="index">
                   <td>{{ ++index }}</td>
                   <td>{{ user.name }}</td>
+                  <!-- <td> <img :src="'/img/profile/' + user.photo" alt="User Avatar"/> </td> -->
+                  <td> <img class="img-fluid img-thumbnail" :src="renderPhoto(user)" alt="User Avatar" width="50" height="40"/> </td>
                   <td>{{ user.email }}</td>
                   <td>{{user.type | firstLetterUpperCase}}</td>
                   <td>{{user.created_at | diffDate}}</td>
@@ -147,7 +150,11 @@ export default {
   },
 
   methods: {
-
+    renderPhoto(user){
+      // let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/" + this.form.photo;
+      let photo = user.photo ? "img/profile/" + user.photo : "assets/admin/images/admin.png";
+      return photo;
+    },
     // pagination function
     getResults(page = 1) {
       axios.get('api/user?page=' + page)
@@ -250,9 +257,12 @@ export default {
     loadUsers() {
       // if current user is admin only then send the http request
       if (this.$gate.isAdminOrAuthor()) {
-        axios.get('api/user').then(({
+        axios.get('api/user')
+        .then(({
           data
-        }) => (this.users = data));
+        }) => (
+          this.users = data
+        ));
       }
     },
     // Create a new user
@@ -291,16 +301,47 @@ export default {
 
     // Listen an even
     Fire.$on('searching', () =>{
+
       // get data form parent
       let query = this.$parent.search;
+
       // send http request to the server
       axios.get('api/findUser?q=' + query)
+
       .then((data) => {
-        this.users = data.data
-      })
-      .catch(() => {
+
+        // If found searching data
+        if(data.data.total > 0){
+
+          this.users = data.data
+
+        }else{
+          // If not found searching data then set empty array
+          data.data.length = 0
+
+          this.users = data.data
+
+          toast.fire({
+            type: 'error',
+            title: 'Search data not found!!'
+          })
+
+        }
 
       })
+
+      .catch(() => {
+
+        toast.fire({
+
+          type: 'error',
+
+          title: 'Not found searching data!!'
+
+        })
+
+      })
+
     })
   }
 }

@@ -19,7 +19,7 @@ class UserController extends Controller
   {
     // Check authorize admin
     if(\Gate::allows('isAdmin') || \Gate::allows('isAuthor')){
-      return User::latest()->paginate(10);
+      return User::latest()->paginate(5);
     }
   }
 
@@ -168,7 +168,7 @@ class UserController extends Controller
   }
 
   public function search(){
-
+    
     if ($search = \Request::get('q')) {
 
       $users = User::where(function($query) use ($search){
@@ -188,6 +188,8 @@ class UserController extends Controller
     }
 
     return $users;
+
+
   }
 
 }

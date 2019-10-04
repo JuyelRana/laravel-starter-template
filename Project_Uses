@@ -20,3 +20,4 @@ Access Control Package
 11. Awesome vuejs from (https://github.com/vuejs/awesome-vue)
 12. Vue Table from (https://www.laravel-enso.com/examples/table)
 13. For table we used this package (https://github.com/gilbitron/laravel-vue-pagination)
+14. For search sending request to server using lodash debounce (https://lodash.com/docs/4.17.15#debounce)

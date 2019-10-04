@@ -18,10 +18,10 @@ import swal from 'sweetalert2';
 
 window.swal = swal;
 const toast = swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
 });
 
 window.toast = toast;
@@ -41,39 +41,39 @@ Vue.use(VueRouter);
 
 
 Vue.use(VueProgressBar, {
-    color: 'rgb(143, 255, 199)',
-    failedColor: 'red',
-    height: '3px'
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '3px'
 });
 
 let routes = [
-    {path: '/dashboard', component: require('./components/Dashboard.vue').default},
-    {path: '/developer', component: require('./components/Developer.vue').default},
-    {path: '/users', component: require('./components/Users.vue').default},
-    {path: '/profile', component: require('./components/Profile.vue').default},
-    {path: '*', component: require('./components/NotFound.vue').default},
+  {path: '/dashboard', component: require('./components/Dashboard.vue').default},
+  {path: '/developer', component: require('./components/Developer.vue').default},
+  {path: '/users', component: require('./components/Users.vue').default},
+  {path: '/profile', component: require('./components/Profile.vue').default},
+  {path: '*', component: require('./components/NotFound.vue').default},
 ];
 
 const router = new VueRouter({
-    routes,
-    mode: 'history'
+  routes,
+  mode: 'history'
 });
 
 //Global function to upercase first letter of a word
 Vue.filter('firstLetterUpperCase', function (value) {
-    if (!value) return '';
-    value = value.toString();
-    return value.charAt(0).toUpperCase() + value.slice(1);
+  if (!value) return '';
+  value = value.toString();
+  return value.charAt(0).toUpperCase() + value.slice(1);
 });
 
 //Convert Date as month/day/year
 Vue.filter('mdyDate', function (date) {
-    return moment(date).format('MMMM Do YYYY');
+  return moment(date).format('MMMM Do YYYY');
 });
 
 //get time difference between present and created date
 Vue.filter('diffDate', function (date) {
-    return moment(date).fromNow();
+  return moment(date).fromNow();
 });
 
 let Fire = new Vue();
@@ -82,25 +82,25 @@ window.Fire = Fire;
 
 // Start Passport
 Vue.component(
-    'passport-clients',
-    require('./components/passport/Clients.vue').default
+  'passport-clients',
+  require('./components/passport/Clients.vue').default
 );
 
 Vue.component(
-    'passport-authorized-clients',
-    require('./components/passport/AuthorizedClients.vue').default
+  'passport-authorized-clients',
+  require('./components/passport/AuthorizedClients.vue').default
 );
 
 Vue.component(
-    'passport-personal-access-tokens',
-    require('./components/passport/PersonalAccessTokens.vue').default
+  'passport-personal-access-tokens',
+  require('./components/passport/PersonalAccessTokens.vue').default
 );
 // End passport
 
 // Page not found
 Vue.component(
-    'not-found',
-    require('./components/NotFound.vue').default
+  'not-found',
+  require('./components/NotFound.vue').default
 );
 // Page not found
 
@@ -109,14 +109,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 
 const app = new Vue({
-    el: '#app',
-    router,
-    data:{
-      search: ''
-    },
-    methods: {
-      searchit() {
-        Fire.$emit('searching');
-      }
-    }
+  el: '#app',
+  router,
+  data:{
+    search: ''
+  },
+  methods: {
+    searchit: _.debounce(() => {
+      Fire.$emit('searching');
+    }, 1000)
+  }
 });
