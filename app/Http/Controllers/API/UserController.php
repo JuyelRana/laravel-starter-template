@@ -17,7 +17,9 @@ class UserController extends Controller
 
   public function index()
   {
-    return User::latest()->paginate(10);
+    // Check authorize admin
+    $this->authorize('isAdmin');
+    return User::latest()->paginate(20);
   }
 
 
@@ -125,6 +127,10 @@ class UserController extends Controller
   */
   public function destroy($id)
   {
+
+    // Check authorize admin
+    $this->authorize('isAdmin');
+
     //get loged in user
     $current_user = auth('api')->user();
 
