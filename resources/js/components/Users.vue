@@ -15,7 +15,7 @@
             </div>
           </div>
           <!-- /.box-header -->
-          <div class="box-body table-responsive no-padding">
+          <div class="card-body table-responsive no-padding">
             <table class="table table-hover">
               <tbody class="text-center">
                 <tr>
@@ -27,7 +27,8 @@
                   <th>Modify</th>
 
                 </tr>
-                <tr v-for="user in users" :key="user.id">
+                <tr v-for="user in users.data" :key="user.id">
+                <!-- <  tr v-for="user in users.data" :key="user.id"> -->
                   <td>{{ user.id }}</td>
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
@@ -45,6 +46,11 @@
             </table>
           </div>
           <!-- /.card-body -->
+
+          <div class="card-footer">
+            <pagination :data="users" @pagination-change-page="getResults"></pagination>
+          </div>
+
         </div>
         <!-- /.card -->
       </div>
@@ -142,6 +148,15 @@ export default {
   },
 
   methods: {
+
+    // pagination function
+    getResults(page = 1) {
+      axios.get('api/user?page=' + page)
+      .then(response => {
+        this.users = response.data;
+      });
+    },
+
     //Update the user data
     updateUser() {
       this.$Progress.start()
@@ -214,9 +229,8 @@ export default {
         // Send request to the server
         if (result.value) {
 
-          this.form.delete('api/user/'+id).then( (response) =>{
-            if(response.data.status == 'success')
-            {
+          this.form.delete('api/user/' + id).then((response) => {
+            if (response.data.status == 'success') {
               swal.fire(
                 'Deleted!',
                 response.data.msg,
@@ -227,7 +241,7 @@ export default {
 
             }
 
-          }).catch( () => {
+          }).catch(() => {
             swal.fire("Failed!", "User not deleted!!", "error");
           });
         }
@@ -236,8 +250,10 @@ export default {
     //Get all users data form server
     loadUsers() {
       // if current user is admin only then send the http request
-      if(this.$gate.isAdminOrAuthor()){
-        axios.get('api/user').then(({ data }) => (this.users = data.data));
+      if (this.$gate.isAdminOrAuthor()) {
+        axios.get('api/user').then(({
+          data
+        }) => (this.users = data));
       }
     },
     // Create a new user

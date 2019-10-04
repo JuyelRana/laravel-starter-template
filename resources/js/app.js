@@ -32,7 +32,8 @@ window.Form = Form;
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
 
-
+//pagination packages
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 import VueRouter from 'vue-router';
 
