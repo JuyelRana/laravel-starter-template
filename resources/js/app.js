@@ -6,6 +6,13 @@ import moment from 'moment';
 import {Form, HasError, AlertError} from 'vform';
 import VueProgressBar from 'vue-progressbar';
 
+/** Admin Access Check **/
+import Gate from './Gate';
+// To Access Gate from any javascript class
+Vue.prototype.$gate = new Gate(window.user)
+/** Admin Access Check **/
+
+
 /*Sweet Alert*/
 import swal from 'sweetalert2';
 

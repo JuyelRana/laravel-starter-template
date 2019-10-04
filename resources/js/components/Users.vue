@@ -1,7 +1,7 @@
 <template>
 
   <div class="container">
-    <div class="row mt-4">
+    <div class="row mt-4" v-if="$gate.isAdmin()">
       <div class="col-12">
         <div class="card">
           <div class="card-header">
@@ -221,16 +221,17 @@ export default {
             }
 
           }).catch( () => {
-              swal.fire("Failed!", "User not deleted!!", "error");
+            swal.fire("Failed!", "User not deleted!!", "error");
           });
         }
       })
     },
     //Get all users data form server
     loadUsers() {
-      axios.get('api/user').then(({
-        data
-      }) => (this.users = data.data))
+      // if current user is admin only then send the http request
+      if(this.$gate.isAdmin()){
+        axios.get('api/user').then(({ data }) => (this.users = data.data));
+      }
     },
     // Create a new user
     createUser() {
