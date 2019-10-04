@@ -6,7 +6,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>AdminLTE 3 | Starter</title>
+  <title>Admin Panel | Starter</title>
 
   <link rel="stylesheet" href="/css/app.css">
 
@@ -58,7 +58,12 @@
             alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+            <a href="#" class="d-block">
+              {{ Auth::user()->name }}
+              <p>
+                {{ ucfirst(Auth::user()->type) }}
+              </p>
+            </a>
           </div>
         </div>
 

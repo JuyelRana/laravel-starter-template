@@ -1,6 +1,7 @@
 <template>
 
   <div class="container">
+
     <div class="row mt-4" v-if="$gate.isAdmin()">
       <div class="col-12">
         <div class="card">
@@ -48,6 +49,12 @@
         <!-- /.card -->
       </div>
     </div>
+
+    <!-- if not an admin it will shows 404 error page -->
+    <div v-if="!$gate.isAdmin()">
+      <not-found></not-found>
+    </div>
+    <!-- if not an admin it will shows 404 error page -->
 
     <!-- Modal -->
     <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">

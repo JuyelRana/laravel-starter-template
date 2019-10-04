@@ -32,6 +32,8 @@ window.Form = Form;
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
 
+
+
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
@@ -92,6 +94,13 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue').default
 );
 // End passport
+
+// Page not found
+Vue.component(
+    'not-found',
+    require('./components/NotFound.vue').default
+);
+// Page not found
 
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
